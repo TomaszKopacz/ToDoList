@@ -8,6 +8,7 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
+/* THIS TEST CLASS SHOULD BE REMOVED */
 class TaskDatabaseTest {
     private var taskDao : TaskDao? = null
     private var taskDb : TaskDatabase? = null
