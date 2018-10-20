@@ -5,7 +5,7 @@ import com.example.tomas.mytasks.view.TaskView
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TaskCreatorPresenter(private val view: TaskView, private val listener: OnTaskReadyListener) : TaskCreator {
+class TaskCreatorPresenter(private val view: TaskView, private val listener: OnTaskReadyListener?) : TaskCreator {
 
     var title: String? = null
     var description: String? = null
@@ -20,7 +20,7 @@ class TaskCreatorPresenter(private val view: TaskView, private val listener: OnT
     override fun createTask() {
         loadValues()
         val task = prepareTask()
-        listener.taskReady(task)
+        listener?.taskReady(task)
     }
 
     private fun loadValues() {
@@ -39,7 +39,6 @@ class TaskCreatorPresenter(private val view: TaskView, private val listener: OnT
         val formatter = SimpleDateFormat(DATE_PATTERN, Locale.getDefault())
         creationDate = formatter.format(Date())
     }
-
 
     private fun prepareTask(): Task {
         val task = Task()
