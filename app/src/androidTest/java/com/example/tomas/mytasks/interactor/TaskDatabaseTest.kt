@@ -39,7 +39,7 @@ class TaskDatabaseTest {
         task.title = TITLE
         task.creationDate = CREATION
         task.description = DESCRIPTION
-        task.mustToDoDate = TERMINATION
+        task.deadline = TERMINATION
         task.priority = PRIORITY
 
         taskDao!!.insert(task)
@@ -50,7 +50,7 @@ class TaskDatabaseTest {
         assertTrue(dbTask.title == TITLE)
         assertTrue(dbTask.creationDate == CREATION)
         assertTrue(dbTask.description == DESCRIPTION)
-        assertTrue(dbTask.mustToDoDate == TERMINATION)
+        assertTrue(dbTask.deadline == TERMINATION)
         assertTrue(dbTask.priority == PRIORITY)
     }
 }

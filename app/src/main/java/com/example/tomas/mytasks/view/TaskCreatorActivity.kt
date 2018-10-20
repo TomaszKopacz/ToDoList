@@ -5,12 +5,19 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.tomas.mytasks.R
 import com.example.tomas.mytasks.presenter.TaskCreator
+import kotlinx.android.synthetic.main.activity_task_creator.*
 
-class TaskCreatorActivity(presenter: TaskCreator) : AppCompatActivity(), TaskView {
+class TaskCreatorActivity : AppCompatActivity(), TaskView {
+
+    var presenter: TaskCreator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task_creator)
+
+        submit_task_button.setOnClickListener {
+            presenter?.createTask()
+        }
     }
 
     override fun getContext(): Context {
@@ -25,7 +32,7 @@ class TaskCreatorActivity(presenter: TaskCreator) : AppCompatActivity(), TaskVie
         TODO("not implemented")
     }
 
-    override fun getDeadline(): String {
+    override fun getTaskDeadline(): String {
         TODO("not implemented")
     }
 

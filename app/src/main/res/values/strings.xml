@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MyTasks</string>
+
+    <string name="title_label">Title:</string>
+    <string name="description_label">Description:</string>
+    <string name="deadline_label">Deadline:</string>
+    <string name="priority_label">Priority:</string>
+    <string name="submit">SUBMIT</string>
 </resources>

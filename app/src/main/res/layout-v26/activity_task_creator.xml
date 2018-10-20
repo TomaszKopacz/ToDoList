@@ -24,9 +24,10 @@
             android:id="@+id/title"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/title_label"
-            android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/decription_label"/>
+            android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/decription_label"
+            android:autofillHints="false"/>
     <TextView
-            android:text="@string/description_label"
+            android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/decription_label"
@@ -38,12 +39,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
+            android:text="Name"
             android:ems="10"
             android:id="@+id/description" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/decription_label" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="32dp"/>
+            android:layout_marginStart="32dp"
+    />
     <TextView
-            android:text="@string/deadline_label"
+            android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/deadline_label" android:layout_marginTop="16dp"
@@ -56,17 +59,14 @@
             android:ems="10"
             android:id="@+id/deadline"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="32dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/deadline_label" android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/priority_label"/>
+            android:layout_marginStart="32dp" tools:layout_editor_absoluteY="259dp"/>
     <TextView
-            android:text="@string/priority_label"
+            android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/priority_label" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/deadline" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="32dp" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/priority_bar"/>
+            android:layout_marginStart="32dp"/>
     <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/priority_label" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="32dp"/>
     <Button
-            android:text="@string/submit"
+            android:text="Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/submit_task_button" app:layout_constraintStart_toStartOf="parent"

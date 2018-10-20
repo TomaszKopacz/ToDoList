@@ -8,7 +8,7 @@ interface TaskView {
 
     fun getTaskTitle() : String
     fun getTaskDescription() : String
-    fun getDeadline() : String
+    fun getTaskDeadline() : String
     fun getTaskPriority() : Int
 
     fun setTaskTitle(title : String)

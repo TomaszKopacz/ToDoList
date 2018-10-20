@@ -28,7 +28,7 @@ class Task {
     var description : String? = null
 
     @ColumnInfo(name = TERMINATION)
-    var mustToDoDate : String? = null
+    var deadline : String? = null
 
     @ColumnInfo(name = PRIORITY)
     var priority : Int? = null
