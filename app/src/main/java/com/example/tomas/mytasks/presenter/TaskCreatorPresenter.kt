@@ -18,12 +18,12 @@ class TaskCreatorPresenter(private val view: TaskView, private val listener: OnT
     }
 
     override fun createTask() {
-        loadTaskValues()
+        loadValues()
         val task = prepareTask()
         listener.taskReady(task)
     }
 
-    private fun loadTaskValues() {
+    private fun loadValues() {
         setValuesFromFields()
         setCurrentDate()
     }
