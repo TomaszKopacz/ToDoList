@@ -1,6 +1,7 @@
 package com.example.tomas.mytasks.presenter
 
 import com.example.tomas.mytasks.entity.Task
+import com.example.tomas.mytasks.utils.DatePatterns
 import com.example.tomas.mytasks.view.TaskView
 import java.text.SimpleDateFormat
 import java.util.*
@@ -14,7 +15,7 @@ class TaskCreatorPresenter(private val view: TaskView, private val listener: OnT
     var creationDate: String? = null
 
     companion object {
-        private const val DATE_PATTERN = "dd-MM-yyyy"
+        private const val DATE_PATTERN = DatePatterns.DD_MM_YYYY_DASHES
     }
 
     override fun createTask() {
