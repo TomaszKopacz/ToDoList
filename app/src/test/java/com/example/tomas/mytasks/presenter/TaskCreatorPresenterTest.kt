@@ -17,10 +17,11 @@ class TaskCreatorPresenterTest {
     private var testListener: OnTaskReadyListener? = null
 
     companion object {
-        const val TITLE = "TITLE"
-        const val DESCRIPTION = "DESCRIPTION"
-        const val DEADLINE = "31-12-2020"
-        const val PRIORITY = 4
+        const val TEST_TITLE = "TEST_TITLE"
+        const val TEST_DESCRIPTION = "TEST_DESCRIPTION"
+        const val TEST_DEADLINE = "31-12-2020"
+        const val TEST_PRIORITY = 4
+
         const val EMPTY_TEXT = ""
         const val DEFAULT_PRIORITY = 1
     }
@@ -85,18 +86,18 @@ class TaskCreatorPresenterTest {
     @Test
     fun testCreatingTask() {
         testPresenter = TaskCreatorPresenter(testCreatorView!!, testListener!!)
-        testCreatorView!!.setTaskTitle(TITLE)
-        testCreatorView!!.setTaskDescription(DESCRIPTION)
-        testCreatorView!!.setTaskDeadline(DEADLINE)
-        testCreatorView!!.setTaskPriority(PRIORITY)
+        testCreatorView!!.setTaskTitle(TEST_TITLE)
+        testCreatorView!!.setTaskDescription(TEST_DESCRIPTION)
+        testCreatorView!!.setTaskDeadline(TEST_DEADLINE)
+        testCreatorView!!.setTaskPriority(TEST_PRIORITY)
 
         testPresenter!!.createTask()
 
         assertTrue(createdTask!!.id == null)
-        assertTrue(createdTask!!.title == TITLE)
-        assertTrue(createdTask!!.description == DESCRIPTION)
-        assertTrue(createdTask!!.deadline == DEADLINE)
-        assertTrue(createdTask!!.priority == PRIORITY)
+        assertTrue(createdTask!!.title == TEST_TITLE)
+        assertTrue(createdTask!!.description == TEST_DESCRIPTION)
+        assertTrue(createdTask!!.deadline == TEST_DEADLINE)
+        assertTrue(createdTask!!.priority == TEST_PRIORITY)
         assertFalse(createdTask!!.creationDate!!.isEmpty())
     }
 
@@ -106,7 +107,7 @@ class TaskCreatorPresenterTest {
         testCreatorView!!.setTaskTitle(EMPTY_TEXT)
         testCreatorView!!.setTaskDescription(EMPTY_TEXT)
         testCreatorView!!.setTaskDeadline(EMPTY_TEXT)
-        testCreatorView!!.setTaskPriority(PRIORITY)
+        testCreatorView!!.setTaskPriority(TEST_PRIORITY)
 
         testPresenter!!.createTask()
 
@@ -114,7 +115,7 @@ class TaskCreatorPresenterTest {
         assertTrue(createdTask!!.title == EMPTY_TEXT)
         assertTrue(createdTask!!.description == EMPTY_TEXT)
         assertTrue(createdTask!!.deadline == EMPTY_TEXT)
-        assertTrue(createdTask!!.priority == PRIORITY)
+        assertTrue(createdTask!!.priority == TEST_PRIORITY)
         assertFalse(createdTask!!.creationDate!!.isEmpty())
     }
 
@@ -123,17 +124,28 @@ class TaskCreatorPresenterTest {
         testPresenter = TaskCreatorPresenter(testCreatorView!!, testListener)
 
         val testTask = Task()
-        testTask.title = TITLE
-        testTask.description = DESCRIPTION
-        testTask.deadline = DEADLINE
-        testTask.priority = PRIORITY
+        testTask.title = TEST_TITLE
+        testTask.description = TEST_DESCRIPTION
+        testTask.deadline = TEST_DEADLINE
+        testTask.priority = TEST_PRIORITY
 
         testPresenter!!.loadTask(testTask)
 
-        assertTrue(testCreatorView!!.getTaskTitle() == TITLE)
-        assertTrue(testCreatorView!!.getTaskDescription() == DESCRIPTION)
-        assertTrue(testCreatorView!!.getTaskDeadline() == DEADLINE)
-        assertTrue(testCreatorView!!.getTaskPriority() == PRIORITY)
+        assertTrue(testCreatorView!!.getTaskTitle() == TEST_TITLE)
+        assertTrue(testCreatorView!!.getTaskDescription() == TEST_DESCRIPTION)
+        assertTrue(testCreatorView!!.getTaskDeadline() == TEST_DEADLINE)
+        assertTrue(testCreatorView!!.getTaskPriority() == TEST_PRIORITY)
     }
 
+    @Test
+    fun testLoadingNullTask(){
+        testPresenter = TaskCreatorPresenter(testCreatorView!!, testListener)
+
+        testPresenter!!.loadTask(null)
+
+        assertTrue(testCreatorView!!.getTaskTitle() == EMPTY_TEXT)
+        assertTrue(testCreatorView!!.getTaskDescription() == EMPTY_TEXT)
+        assertTrue(testCreatorView!!.getTaskDeadline() == EMPTY_TEXT)
+        assertTrue(testCreatorView!!.getTaskPriority() == DEFAULT_PRIORITY)
+    }
 }

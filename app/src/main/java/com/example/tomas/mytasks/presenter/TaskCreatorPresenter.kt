@@ -20,8 +20,7 @@ class TaskCreatorPresenter(private val view: TaskView, private val listener: OnT
 
     override fun createTask() {
         assignTaskValues()
-        val task = prepareTask()
-        listener?.taskReady(task)
+        listener?.taskReady(prepareTask())
     }
 
     override fun loadTask(task: Task?) {
