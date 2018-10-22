@@ -4,12 +4,17 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.tomas.mytasks.R.layout.activity_task_creator
-import com.example.tomas.mytasks.presenter.TaskCreator
+import com.example.tomas.mytasks.presenter.TaskModifier
 import kotlinx.android.synthetic.main.activity_task_creator.*
 
 class TaskCreatorActivity : AppCompatActivity(), TaskView {
 
-    var presenter: TaskCreator? = null
+    var presenter: TaskModifier? = null
+
+    companion object {
+        const val EMPTY_TEXT : String = ""
+        const val DEFAULT_PRIORITY = 1
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,19 +45,31 @@ class TaskCreatorActivity : AppCompatActivity(), TaskView {
         return priority_bar.progress
     }
 
-    override fun setTaskTitle(title: String) {
-        task_title.setText(title)
+    override fun setTaskTitle(title: String?) {
+        if (title == null)
+            task_title.setText(EMPTY_TEXT)
+        else
+            task_title.setText(title)
     }
 
-    override fun setTaskDescription(description: String) {
-        task_description.setText(description)
+    override fun setTaskDescription(description: String?) {
+        if (description == null)
+            task_title.setText(EMPTY_TEXT)
+        else
+            task_title.setText(description)
     }
 
-    override fun setTaskDeadline(deadline: String) {
-        task_deadline.setText(deadline)
+    override fun setTaskDeadline(deadline: String?) {
+        if (deadline == null)
+            task_title.setText(EMPTY_TEXT)
+        else
+            task_title.setText(deadline)
     }
 
-    override fun setTaskPriority(priority: Int) {
-        priority_bar.progress = priority
+    override fun setTaskPriority(priority: Int?) {
+        if (priority == null)
+            priority_bar.progress = DEFAULT_PRIORITY
+        else
+            priority_bar.progress = priority
     }
 }

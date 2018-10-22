@@ -11,8 +11,8 @@ interface TaskView {
     fun getTaskDeadline() : String
     fun getTaskPriority() : Int
 
-    fun setTaskTitle(title : String)
-    fun setTaskDescription(description : String)
-    fun setTaskDeadline(deadline : String)
-    fun setTaskPriority(priority : Int)
+    fun setTaskTitle(title : String?)
+    fun setTaskDescription(description : String?)
+    fun setTaskDeadline(deadline : String?)
+    fun setTaskPriority(priority : Int?)
 }

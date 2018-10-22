@@ -6,7 +6,7 @@ import com.example.tomas.mytasks.view.TaskView
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TaskCreatorPresenter(private val view: TaskView, private val listener: OnTaskReadyListener?) : TaskCreator {
+class TaskCreatorPresenter(private val view: TaskView, private val listener: OnTaskReadyListener?) : TaskModifier {
 
     var title: String? = null
     var description: String? = null
@@ -19,12 +19,23 @@ class TaskCreatorPresenter(private val view: TaskView, private val listener: OnT
     }
 
     override fun createTask() {
-        loadValues()
+        assignTaskValues()
         val task = prepareTask()
         listener?.taskReady(task)
     }
 
-    private fun loadValues() {
+    override fun loadTask(task: Task?) {
+        if (task == null)
+            return
+        else {
+            view.setTaskTitle(task.title)
+            view.setTaskDescription(task.description)
+            view.setTaskDeadline(task.deadline)
+            view.setTaskPriority(task.priority)
+        }
+    }
+
+    private fun assignTaskValues() {
         setValuesFromFields()
         setCurrentDate()
     }

@@ -22,13 +22,14 @@ class TaskCreatorPresenterTest {
         const val DEADLINE = "31-12-2020"
         const val PRIORITY = 4
         const val EMPTY_TEXT = ""
+        const val DEFAULT_PRIORITY = 1
     }
 
     var testTitle: String? = null
     var testDescription: String? = null
     var testDeadline: String? = null
     var testPriority: Int? = null
-    var taskCreated: Task? = null
+    var createdTask: Task? = null
 
     @Before
     fun createTaskCreatorView() {
@@ -39,35 +40,35 @@ class TaskCreatorPresenterTest {
             }
 
             override fun getTaskTitle(): String {
-                return testTitle!!
+                return if (testTitle == null) EMPTY_TEXT else testTitle!!
             }
 
             override fun getTaskDescription(): String {
-                return testDescription!!
+                return if (testDescription == null) EMPTY_TEXT else testDescription!!
             }
 
             override fun getTaskDeadline(): String {
-                return testDeadline!!
+                return if (testDeadline == null) EMPTY_TEXT else testDeadline!!
             }
 
             override fun getTaskPriority(): Int {
-                return testPriority!!
+                return if (testPriority == null) DEFAULT_PRIORITY else testPriority!!
             }
 
-            override fun setTaskTitle(title: String) {
-                testTitle = title
+            override fun setTaskTitle(title: String?) {
+                testTitle = title ?: EMPTY_TEXT
             }
 
-            override fun setTaskDescription(description: String) {
-                testDescription = description
+            override fun setTaskDescription(description: String?) {
+                testDescription = description ?: EMPTY_TEXT
             }
 
-            override fun setTaskDeadline(deadline: String) {
-                testDeadline = deadline
+            override fun setTaskDeadline(deadline: String?) {
+                testDeadline = deadline ?: EMPTY_TEXT
             }
 
-            override fun setTaskPriority(priority: Int) {
-                testPriority = priority
+            override fun setTaskPriority(priority: Int?) {
+                testPriority = priority ?: DEFAULT_PRIORITY
             }
         }
     }
@@ -76,7 +77,7 @@ class TaskCreatorPresenterTest {
     fun createOnTaskReadyListener() {
         testListener = object : OnTaskReadyListener {
             override fun taskReady(task: Task) {
-                taskCreated = task
+                createdTask = task
             }
         }
     }
@@ -91,12 +92,12 @@ class TaskCreatorPresenterTest {
 
         testPresenter!!.createTask()
 
-        assertTrue(taskCreated!!.id == null)
-        assertTrue(taskCreated!!.title == TITLE)
-        assertTrue(taskCreated!!.description == DESCRIPTION)
-        assertTrue(taskCreated!!.deadline == DEADLINE)
-        assertTrue(taskCreated!!.priority == PRIORITY)
-        assertFalse(taskCreated!!.creationDate!!.isNullOrEmpty())
+        assertTrue(createdTask!!.id == null)
+        assertTrue(createdTask!!.title == TITLE)
+        assertTrue(createdTask!!.description == DESCRIPTION)
+        assertTrue(createdTask!!.deadline == DEADLINE)
+        assertTrue(createdTask!!.priority == PRIORITY)
+        assertFalse(createdTask!!.creationDate!!.isEmpty())
     }
 
     @Test
@@ -109,11 +110,30 @@ class TaskCreatorPresenterTest {
 
         testPresenter!!.createTask()
 
-        assertTrue(taskCreated!!.id == null)
-        assertTrue(taskCreated!!.title == EMPTY_TEXT)
-        assertTrue(taskCreated!!.description == EMPTY_TEXT)
-        assertTrue(taskCreated!!.deadline == EMPTY_TEXT)
-        assertTrue(taskCreated!!.priority == PRIORITY)
-        assertFalse(taskCreated!!.creationDate!!.isNullOrEmpty())
+        assertTrue(createdTask!!.id == null)
+        assertTrue(createdTask!!.title == EMPTY_TEXT)
+        assertTrue(createdTask!!.description == EMPTY_TEXT)
+        assertTrue(createdTask!!.deadline == EMPTY_TEXT)
+        assertTrue(createdTask!!.priority == PRIORITY)
+        assertFalse(createdTask!!.creationDate!!.isEmpty())
     }
+
+    @Test
+    fun testLoadingTask(){
+        testPresenter = TaskCreatorPresenter(testCreatorView!!, testListener)
+
+        val testTask = Task()
+        testTask.title = TITLE
+        testTask.description = DESCRIPTION
+        testTask.deadline = DEADLINE
+        testTask.priority = PRIORITY
+
+        testPresenter!!.loadTask(testTask)
+
+        assertTrue(testCreatorView!!.getTaskTitle() == TITLE)
+        assertTrue(testCreatorView!!.getTaskDescription() == DESCRIPTION)
+        assertTrue(testCreatorView!!.getTaskDeadline() == DEADLINE)
+        assertTrue(testCreatorView!!.getTaskPriority() == PRIORITY)
+    }
+
 }
