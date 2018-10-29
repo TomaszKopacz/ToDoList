@@ -11,5 +11,5 @@ import org.junit.runner.RunWith
 class TaskCreatorActivityTest {
 
     @Rule
-    var mTaskCreatorActivity: ActivityTestRule<TaskCreatorActivity> = ActivityTestRule(TaskCreatorActivity::class.java)
+    var mTaskCreatorActivity: ActivityTestRule<TaskMakerActivity> = ActivityTestRule(TaskMakerActivity::class.java)
 }

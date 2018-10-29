@@ -2,7 +2,7 @@ package com.example.tomas.mytasks.presenter
 
 import android.content.Context
 import com.example.tomas.mytasks.entity.Task
-import com.example.tomas.mytasks.view.TaskView
+import com.example.tomas.mytasks.view.TaskMakerView
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -12,8 +12,8 @@ import org.mockito.Mockito.mock
 
 class TaskCreatorPresenterTest {
 
-    private var testPresenter: TaskCreatorPresenter? = null
-    private var testCreatorView: TaskView? = null
+    private var testPresenter: TaskMakerPresenterImpl? = null
+    private var testCreatorView: TaskMakerView? = null
     private var testListener: OnTaskReadyListener? = null
 
     companion object {
@@ -34,7 +34,7 @@ class TaskCreatorPresenterTest {
 
     @Before
     fun createTaskCreatorView() {
-        testCreatorView = object : TaskView {
+        testCreatorView = object : TaskMakerView {
 
             override fun getContext(): Context {
                 return mock(Context::class.java)
@@ -77,7 +77,7 @@ class TaskCreatorPresenterTest {
     @Before
     fun createOnTaskReadyListener() {
         testListener = object : OnTaskReadyListener {
-            override fun taskReady(task: Task) {
+            override fun taskReady(task: Task, id: Int?) {
                 createdTask = task
             }
         }
@@ -85,13 +85,15 @@ class TaskCreatorPresenterTest {
 
     @Test
     fun testCreatingTask() {
-        testPresenter = TaskCreatorPresenter(testCreatorView!!, testListener!!)
+        testPresenter = TaskMakerPresenterImpl(testCreatorView!!)
+
         testCreatorView!!.setTaskTitle(TEST_TITLE)
         testCreatorView!!.setTaskDescription(TEST_DESCRIPTION)
         testCreatorView!!.setTaskDeadline(TEST_DEADLINE)
         testCreatorView!!.setTaskPriority(TEST_PRIORITY)
 
-        testPresenter!!.createTask()
+        testPresenter!!.createTask(testListener!!)
+        testPresenter!!.onSubmitTaskButtonClicked()
 
         assertTrue(createdTask!!.id == null)
         assertTrue(createdTask!!.title == TEST_TITLE)
@@ -103,13 +105,15 @@ class TaskCreatorPresenterTest {
 
     @Test
     fun testCreatingTaskWhenEmptyFields() {
-        testPresenter = TaskCreatorPresenter(testCreatorView!!, testListener!!)
+        testPresenter = TaskMakerPresenterImpl(testCreatorView!!)
+
         testCreatorView!!.setTaskTitle(EMPTY_TEXT)
         testCreatorView!!.setTaskDescription(EMPTY_TEXT)
         testCreatorView!!.setTaskDeadline(EMPTY_TEXT)
         testCreatorView!!.setTaskPriority(TEST_PRIORITY)
 
-        testPresenter!!.createTask()
+        testPresenter!!.createTask(testListener!!)
+        testPresenter!!.onSubmitTaskButtonClicked()
 
         assertTrue(createdTask!!.id == null)
         assertTrue(createdTask!!.title == EMPTY_TEXT)
@@ -121,7 +125,7 @@ class TaskCreatorPresenterTest {
 
     @Test
     fun testLoadingTask(){
-        testPresenter = TaskCreatorPresenter(testCreatorView!!, testListener)
+        testPresenter = TaskMakerPresenterImpl(testCreatorView!!)
 
         val testTask = Task()
         testTask.title = TEST_TITLE
@@ -129,7 +133,7 @@ class TaskCreatorPresenterTest {
         testTask.deadline = TEST_DEADLINE
         testTask.priority = TEST_PRIORITY
 
-        testPresenter!!.loadTask(testTask)
+        testPresenter!!.modifyTask(testTask, 0, testListener!!)
 
         assertTrue(testCreatorView!!.getTaskTitle() == TEST_TITLE)
         assertTrue(testCreatorView!!.getTaskDescription() == TEST_DESCRIPTION)
@@ -139,9 +143,34 @@ class TaskCreatorPresenterTest {
 
     @Test
     fun testLoadingNullTask(){
-        testPresenter = TaskCreatorPresenter(testCreatorView!!, testListener)
+        testPresenter = TaskMakerPresenterImpl(testCreatorView!!)
 
-        testPresenter!!.loadTask(null)
+        testPresenter!!.modifyTask(Task(), 0, testListener!!)
+
+        assertTrue(testCreatorView!!.getTaskTitle() == EMPTY_TEXT)
+        assertTrue(testCreatorView!!.getTaskDescription() == EMPTY_TEXT)
+        assertTrue(testCreatorView!!.getTaskDeadline() == EMPTY_TEXT)
+        assertTrue(testCreatorView!!.getTaskPriority() == DEFAULT_PRIORITY)
+    }
+
+    @Test
+    fun testModifyingTask(){
+        testPresenter = TaskMakerPresenterImpl(testCreatorView!!)
+
+        val testTask = Task()
+        testTask.title = TEST_TITLE
+        testTask.description = TEST_DESCRIPTION
+        testTask.deadline = TEST_DEADLINE
+        testTask.priority = TEST_PRIORITY
+
+        testPresenter!!.modifyTask(testTask, 0, testListener!!)
+
+        testCreatorView!!.setTaskTitle(EMPTY_TEXT)
+        testCreatorView!!.setTaskDescription(EMPTY_TEXT)
+        testCreatorView!!.setTaskDeadline(EMPTY_TEXT)
+        testCreatorView!!.setTaskPriority(DEFAULT_PRIORITY)
+
+        testPresenter!!.onSubmitTaskButtonClicked()
 
         assertTrue(testCreatorView!!.getTaskTitle() == EMPTY_TEXT)
         assertTrue(testCreatorView!!.getTaskDescription() == EMPTY_TEXT)

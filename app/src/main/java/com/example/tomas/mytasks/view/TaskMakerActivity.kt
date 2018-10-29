@@ -4,12 +4,12 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.tomas.mytasks.R.layout.activity_task_creator
-import com.example.tomas.mytasks.presenter.TaskModifier
+import com.example.tomas.mytasks.presenter.TaskMakerPresenter
 import kotlinx.android.synthetic.main.activity_task_creator.*
 
-class TaskCreatorActivity : AppCompatActivity(), TaskView {
+class TaskMakerActivity : AppCompatActivity(), TaskMakerView {
 
-    var presenter: TaskModifier? = null
+    private var presenter: TaskMakerPresenter? = null
 
     companion object {
         const val EMPTY_TEXT : String = ""
@@ -21,8 +21,12 @@ class TaskCreatorActivity : AppCompatActivity(), TaskView {
         setContentView(activity_task_creator)
 
         submit_task_button.setOnClickListener {
-            presenter?.createTask()
+            presenter?.onSubmitTaskButtonClicked()
         }
+    }
+
+    override fun setPresenter(presenter: TaskMakerPresenter) {
+        this.presenter = presenter
     }
 
     override fun getContext(): Context {

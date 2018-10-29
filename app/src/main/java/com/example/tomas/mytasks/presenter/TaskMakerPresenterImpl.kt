@@ -2,11 +2,11 @@ package com.example.tomas.mytasks.presenter
 
 import com.example.tomas.mytasks.entity.Task
 import com.example.tomas.mytasks.utils.DatePatterns
-import com.example.tomas.mytasks.view.TaskView
+import com.example.tomas.mytasks.view.TaskMakerView
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TaskCreatorPresenter(private val view: TaskView, private val listener: OnTaskReadyListener?) : TaskModifier {
+class TaskMakerPresenterImpl(private val view: TaskMakerView) : TaskMakerPresenter, TaskCreator, TaskModifier {
 
     var title: String? = null
     var description: String? = null
@@ -18,12 +18,28 @@ class TaskCreatorPresenter(private val view: TaskView, private val listener: OnT
         private const val DATE_PATTERN = DatePatterns.DD_MM_YYYY_DASHES
     }
 
-    override fun createTask() {
+    private var taskListener: OnTaskReadyListener? = null
+    private var taskNumber: Int? = null
+
+    override fun onSubmitTaskButtonClicked() {
         assignTaskValues()
-        listener?.taskReady(prepareTask())
+
+        if (taskListener != null)
+            taskListener!!.taskReady(prepareTask(), taskNumber)
     }
 
-    override fun loadTask(task: Task?) {
+    override fun createTask(listener: OnTaskReadyListener) {
+        taskListener = listener
+    }
+
+    override fun modifyTask(task: Task, id: Int, listener: OnTaskReadyListener) {
+        taskListener = listener
+        taskNumber = id
+
+        loadTask(task)
+    }
+
+    private fun loadTask(task: Task?) {
         if (task == null)
             return
         else {
