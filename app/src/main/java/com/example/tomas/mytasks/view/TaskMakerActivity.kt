@@ -3,9 +3,9 @@ package com.example.tomas.mytasks.view
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.example.tomas.mytasks.R.layout.activity_task_creator
+import com.example.tomas.mytasks.R.layout.activity_task_maker
 import com.example.tomas.mytasks.presenter.TaskMakerPresenter
-import kotlinx.android.synthetic.main.activity_task_creator.*
+import kotlinx.android.synthetic.main.activity_task_maker.*
 
 class TaskMakerActivity : AppCompatActivity(), TaskMakerView {
 
@@ -18,7 +18,7 @@ class TaskMakerActivity : AppCompatActivity(), TaskMakerView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(activity_task_creator)
+        setContentView(activity_task_maker)
 
         submit_task_button.setOnClickListener {
             presenter?.onSubmitTaskButtonClicked()
