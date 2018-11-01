@@ -99,4 +99,8 @@ class TaskMakerFragment : Fragment(), TaskMakerView {
         else
             priority_bar.progress = priority
     }
+
+    override fun navigateToParentView() {
+        activity?.finish()
+    }
 }

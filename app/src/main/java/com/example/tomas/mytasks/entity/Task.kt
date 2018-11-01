@@ -16,20 +16,20 @@ class Task {
     }
 
     @PrimaryKey(autoGenerate = true)
-    var id : Int? = null
+    var id : Int = 0
 
     @ColumnInfo(name = TITLE)
-    var title : String? = null
+    var title : String = ""
 
     @ColumnInfo(name = CREATION)
-    var creationDate : String? = null
+    var creationDate : String = ""
 
     @ColumnInfo(name = DESCRIPTION)
-    var description : String? = null
+    var description : String = ""
 
     @ColumnInfo(name = TERMINATION)
-    var deadline : String? = null
+    var deadline : String = ""
 
     @ColumnInfo(name = PRIORITY)
-    var priority : Int? = null
+    var priority : Int = 1
 }

@@ -1,7 +1,6 @@
 package com.example.tomas.mytasks.view.creator
 
 import android.content.Context
-import com.example.tomas.mytasks.presenter.creator.TaskMakerPresenter
 
 interface TaskMakerView {
 
@@ -16,4 +15,6 @@ interface TaskMakerView {
     fun setTaskDescription(description : String?)
     fun setTaskDeadline(deadline : String?)
     fun setTaskPriority(priority : Int?)
+
+    fun navigateToParentView()
 }

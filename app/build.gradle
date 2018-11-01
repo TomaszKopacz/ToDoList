@@ -26,19 +26,30 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //general
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:support-v4:27.1.1'
+
+    //testing
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     testImplementation "org.mockito:mockito-core:2.23.0"
 
-    implementation 'android.arch.persistence.room:runtime:1.1.1'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
-    kapt 'android.arch.persistence.room:compiler:1.1.1'
+    //room
+    def roomVersion = "1.1.1"
+    implementation "android.arch.persistence.room:runtime:$roomVersion"
+    kapt "android.arch.persistence.room:compiler:$roomVersion"
 
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    //lifecycle components
+    def lifecycleVersion = "1.1.1"
+    implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
+
+    //recycler view
+    def recViewVersion = "27.1.1"
+    implementation "com.android.support:recyclerview-v7:$recViewVersion"
 }
