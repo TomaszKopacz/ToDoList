@@ -9,5 +9,5 @@ interface BoardView {
     fun getContext() : Context
     fun setPresenter(presenter: BoardPresenter)
 
-    fun displayTasks(adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>)
+    fun displayTasks(adapter: TaskAdapter)
 }

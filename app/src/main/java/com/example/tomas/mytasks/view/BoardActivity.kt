@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.example.tomas.mytasks.R
 import com.example.tomas.mytasks.presenter.BoardPresenter
+import com.example.tomas.mytasks.presenter.BoardPresenterImpl
 import kotlinx.android.synthetic.main.activity_board.*
 
 class BoardActivity : AppCompatActivity(), BoardView {
@@ -17,6 +18,8 @@ class BoardActivity : AppCompatActivity(), BoardView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
+
+        presenter = BoardPresenterImpl(this)
 
         add_task_button.setOnClickListener {
             if (presenter != null)
@@ -44,7 +47,7 @@ class BoardActivity : AppCompatActivity(), BoardView {
         tasks_list.itemAnimator = DefaultItemAnimator()
     }
 
-    override fun displayTasks(adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>) {
+    override fun displayTasks(adapter: TaskAdapter) {
         if (tasks_list != null)
             tasks_list.adapter = adapter
     }
