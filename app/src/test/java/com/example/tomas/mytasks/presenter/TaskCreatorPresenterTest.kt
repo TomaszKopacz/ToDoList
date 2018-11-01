@@ -2,7 +2,9 @@ package com.example.tomas.mytasks.presenter
 
 import android.content.Context
 import com.example.tomas.mytasks.entity.Task
-import com.example.tomas.mytasks.view.TaskMakerView
+import com.example.tomas.mytasks.presenter.board.OnTaskReadyListener
+import com.example.tomas.mytasks.presenter.creator.TaskMakerPresenterImpl
+import com.example.tomas.mytasks.view.creator.TaskMakerView
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before

@@ -1,4 +1,4 @@
-package com.example.tomas.mytasks.presenter
+package com.example.tomas.mytasks.presenter.creator
 
 interface TaskMakerPresenter {
 

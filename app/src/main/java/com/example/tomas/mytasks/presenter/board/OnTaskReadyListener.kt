@@ -1,4 +1,4 @@
-package com.example.tomas.mytasks.presenter
+package com.example.tomas.mytasks.presenter.board
 
 import com.example.tomas.mytasks.entity.Task
 

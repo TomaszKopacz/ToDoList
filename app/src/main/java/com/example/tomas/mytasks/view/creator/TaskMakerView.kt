@@ -1,12 +1,11 @@
-package com.example.tomas.mytasks.view
+package com.example.tomas.mytasks.view.creator
 
 import android.content.Context
-import com.example.tomas.mytasks.presenter.TaskMakerPresenter
+import com.example.tomas.mytasks.presenter.creator.TaskMakerPresenter
 
 interface TaskMakerView {
 
     fun getContext() : Context
-    fun setPresenter(presenter: TaskMakerPresenter)
 
     fun getTaskTitle() : String
     fun getTaskDescription() : String

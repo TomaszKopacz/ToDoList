@@ -1,13 +1,16 @@
-package com.example.tomas.mytasks.view
+package com.example.tomas.mytasks.view.creator
+
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.example.tomas.mytasks.R.layout.activity_task_maker
-import com.example.tomas.mytasks.presenter.TaskMakerPresenter
-import kotlinx.android.synthetic.main.activity_task_maker.*
+import android.support.v4.app.Fragment
+import android.view.*
+import com.example.tomas.mytasks.R
+import com.example.tomas.mytasks.presenter.creator.TaskMakerPresenter
+import com.example.tomas.mytasks.presenter.creator.TaskMakerPresenterImpl
+import kotlinx.android.synthetic.main.fragment_task_maker.*
 
-class TaskMakerActivity : AppCompatActivity(), TaskMakerView {
+class TaskMakerFragment : Fragment(), TaskMakerView {
 
     private var presenter: TaskMakerPresenter? = null
 
@@ -18,19 +21,39 @@ class TaskMakerActivity : AppCompatActivity(), TaskMakerView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(activity_task_maker)
-
-        submit_task_button.setOnClickListener {
-            presenter?.onSubmitTaskButtonClicked()
-        }
+        setHasOptionsMenu(true)
     }
 
-    override fun setPresenter(presenter: TaskMakerPresenter) {
-        this.presenter = presenter
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_task_maker, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        presenter = TaskMakerPresenterImpl(this)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.menu_task_maker, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.menu_submit -> {
+                presenter!!.onSubmitTaskButtonClicked()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun getContext(): Context {
-        return getContext()
+        return activity!!
     }
 
     override fun getTaskTitle(): String {
