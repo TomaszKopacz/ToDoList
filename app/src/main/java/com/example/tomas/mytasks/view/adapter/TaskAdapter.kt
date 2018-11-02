@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.tomas.mytasks.R
 import com.example.tomas.mytasks.entity.Task
+import kotlinx.android.synthetic.main.fragment_task_maker.view.*
 import kotlinx.android.synthetic.main.task_item.view.*
 
-class TaskAdapter(
-    private val tasks: List<Task>,
-    private val listener: OnItemClickListener
-)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TaskAdapter(private val tasks: List<Task>,
+                  private val listener: OnItemClickListener
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface OnItemClickListener {
         fun onItemClick(task: Task, itemView: View)
@@ -34,15 +33,25 @@ class TaskAdapter(
         return tasks.size
     }
 
-    inner class TaskViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(task: Task, listener: OnItemClickListener) = with(itemView){
+    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        private var currentTask: Task? = null
+
+        fun bind(task: Task, listener: OnItemClickListener?) = with(itemView) {
+
+            currentTask = task
+
             item_title.text = task.title
             item_description.text = task.description
             item_deadline.text = task.deadline
 
             setOnClickListener {
-                listener.onItemClick(task, it)
+                listener?.onItemClick(task, it)
             }
+        }
+
+        fun getTask(): Task {
+            return currentTask!!
         }
     }
 }

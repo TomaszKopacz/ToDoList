@@ -4,6 +4,8 @@ package com.example.tomas.mytasks.view.board
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.helper.ItemTouchHelper
+import android.util.Log
 import android.view.*
 import com.example.tomas.mytasks.R
 import com.example.tomas.mytasks.presenter.board.BoardPresenter
@@ -47,7 +49,10 @@ class BoardFragment : Fragment(), BoardView {
     }
 
     override fun showTasks(adapter: TaskAdapter) {
-        if (tasks_list != null)
-            tasks_list.adapter = adapter
+        tasks_list.adapter = adapter
+    }
+
+    override fun setOnItemTouchNotifier(callback: ItemTouchHelper.SimpleCallback) {
+        ItemTouchHelper(callback).attachToRecyclerView(tasks_list)
     }
 }
