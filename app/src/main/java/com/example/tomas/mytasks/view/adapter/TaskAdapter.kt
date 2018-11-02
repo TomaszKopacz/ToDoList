@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.tomas.mytasks.R
 import com.example.tomas.mytasks.entity.Task
-import kotlinx.android.synthetic.main.fragment_task_maker.view.*
 import kotlinx.android.synthetic.main.task_item.view.*
 
 class TaskAdapter(private val tasks: List<Task>,

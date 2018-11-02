@@ -5,7 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.util.Log
 import android.view.*
 import com.example.tomas.mytasks.R
 import com.example.tomas.mytasks.presenter.board.BoardPresenter

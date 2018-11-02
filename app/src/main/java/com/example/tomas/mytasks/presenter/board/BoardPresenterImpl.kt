@@ -4,7 +4,6 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import com.example.tomas.mytasks.app.MyNotesApp
 import com.example.tomas.mytasks.entity.Task
@@ -23,11 +22,11 @@ class BoardPresenterImpl(private val view: BoardView)
     lateinit var repository: TasksRepository
 
     init {
-        getDependencies()
+        injectDependencies()
         makeTasksList()
     }
 
-    private fun getDependencies() {
+    private fun injectDependencies() {
         (view.getContext().applicationContext as MyNotesApp).component.inject(this)
     }
 
