@@ -1,17 +1,23 @@
 package com.example.tomas.mytasks.presenter.creator
 
-import android.content.Intent
 import com.example.tomas.mytasks.app.MyNotesApp
 import com.example.tomas.mytasks.entity.Task
+import com.example.tomas.mytasks.interactor.TasksRepository
 import com.example.tomas.mytasks.utils.DatePatterns
-import com.example.tomas.mytasks.view.board.BoardActivity
 import com.example.tomas.mytasks.view.creator.TaskMakerView
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 class TaskMakerPresenterImpl(private val view: TaskMakerView) : TaskMakerPresenter {
 
+    @Inject lateinit var repository: TasksRepository
+
     private val createdTask = Task()
+
+    init {
+        (view.getContext().applicationContext as MyNotesApp).component.inject(this)
+    }
 
     override fun onSubmitTaskButtonClicked() {
         createTask()
@@ -37,8 +43,7 @@ class TaskMakerPresenterImpl(private val view: TaskMakerView) : TaskMakerPresent
     }
 
     private fun insertTask() {
-        val tasksRepository = (view.getContext().applicationContext as MyNotesApp).getTasksRepository()
-        tasksRepository.insertTask(createdTask)
+        repository.insertTask(createdTask)
     }
 
     private fun navigateToMainView() {

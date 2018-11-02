@@ -15,7 +15,7 @@ class TaskMakerFragment : Fragment(), TaskMakerView {
     private var presenter: TaskMakerPresenter? = null
 
     companion object {
-        const val EMPTY_TEXT : String = ""
+        const val EMPTY_TEXT: String = ""
         const val DEFAULT_PRIORITY = 1
     }
 

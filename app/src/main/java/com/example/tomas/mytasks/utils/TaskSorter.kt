@@ -99,18 +99,18 @@ class TaskSorter {
 
     private fun isSecondTaskMoreImportantByPrimaryFields(task1: Task, task2: Task): Boolean {
         return if (primaryField == null)
-            isSecondTaskMoreImportantBySecondlFields(task1, task2)
+            isSecondTaskMoreImportantBySecondaryFields(task1, task2)
         else {
             val result = compareFields(task1, task2, primaryField!!)
             when (result) {
                 FIELD_ONE_IS_GREATER -> false
-                FIELDS_ARE_THE_SAME -> isSecondTaskMoreImportantBySecondlFields(task1, task2)
+                FIELDS_ARE_THE_SAME -> isSecondTaskMoreImportantBySecondaryFields(task1, task2)
                 else -> true
             }
         }
     }
 
-    private fun isSecondTaskMoreImportantBySecondlFields(task1: Task, task2: Task): Boolean {
+    private fun isSecondTaskMoreImportantBySecondaryFields(task1: Task, task2: Task): Boolean {
         return if (secondaryField == null)
             isSecondTaskMoreImportantByThirdFields(task1, task2)
         else {
@@ -145,8 +145,8 @@ class TaskSorter {
 
     private fun comparePriorities(task1: Task, task2: Task): Int {
         return when {
-            task1.priority!! > task2.priority!! -> FIELD_ONE_IS_GREATER
-            task1.priority!! < task2.priority!! -> FIELD_TWO_IS_GREATER
+            task1.priority > task2.priority -> FIELD_ONE_IS_GREATER
+            task1.priority < task2.priority -> FIELD_TWO_IS_GREATER
             else -> FIELDS_ARE_THE_SAME
         }
     }
