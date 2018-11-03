@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/priority_bar"
                     android:progress="0"
-                    android:max="8"/>
+                    android:max="6"/>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
