@@ -8,7 +8,11 @@
     <string name="submit">SUBMIT</string>
     <string name="title_hint">Title</string>
     <string name="description_hint">Description</string>
-    <string name="deadline_hint">Deadline</string>
+    <string name="deadline_hint">Set deadline…</string>
+    <string name="deadline_time_hint">Set deadline time…</string>
     <string name="task_icon_description">task icon</string>
+    <string name="date_text">%1s-%2s-%3s</string>
+    <string name="time_text">%1s:%2s</string>
+    <string name="datetime">%1s %2s</string>
 
 </resources>

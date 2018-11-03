@@ -3,10 +3,7 @@ package com.example.tomas.mytasks.presenter.creator
 import com.example.tomas.mytasks.app.MyNotesApp
 import com.example.tomas.mytasks.entity.Task
 import com.example.tomas.mytasks.interactor.TasksRepository
-import com.example.tomas.mytasks.utils.DatePatterns
 import com.example.tomas.mytasks.view.creator.TaskMakerView
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 class TaskMakerPresenterImpl(private val view: TaskMakerView) : TaskMakerPresenter {
@@ -27,19 +24,14 @@ class TaskMakerPresenterImpl(private val view: TaskMakerView) : TaskMakerPresent
 
     private fun createTask() {
         getValuesFromViewFields()
-        setCreationDate()
     }
 
     private fun getValuesFromViewFields() {
         createdTask.title = view.getTaskTitle()
         createdTask.description = view.getTaskDescription()
         createdTask.deadline = view.getTaskDeadline()
+        createdTask.time = view.getTaskDeadlineTime()
         createdTask.priority = view.getTaskPriority()
-    }
-
-    private fun setCreationDate() {
-        val formatter = SimpleDateFormat(DatePatterns.DD_MM_YYYY_DASHES, Locale.getDefault())
-        createdTask.creationDate = formatter.format(Date())
     }
 
     private fun insertTask() {

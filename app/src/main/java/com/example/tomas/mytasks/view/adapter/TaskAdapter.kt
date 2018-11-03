@@ -3,6 +3,7 @@ package com.example.tomas.mytasks.view.adapter
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,7 +53,7 @@ class TaskAdapter(private val tasks: List<Task>,
         private fun setLayout(view: View, task: Task){
             view.item_title.text = task.title
             view.item_description.text = task.description
-            view.item_deadline.text = task.deadline
+            view.item_deadline.text = (view.context.getString(R.string.datetime, task.deadline, task.time)).trim()
             view.setBackgroundColor(getBackgroundColor(task))
         }
 

@@ -9,9 +9,9 @@ class Task {
 
     companion object {
         private const val TITLE = "title"
-        private const val CREATION = "creation_date"
         private const val DESCRIPTION = "description"
         private const val TERMINATION = "must_to_do_date"
+        private const val TERMINATION_TIME = "must_to_do_time"
         private const val PRIORITY = "priority"
     }
 
@@ -21,14 +21,14 @@ class Task {
     @ColumnInfo(name = TITLE)
     var title : String = ""
 
-    @ColumnInfo(name = CREATION)
-    var creationDate : String = ""
-
     @ColumnInfo(name = DESCRIPTION)
     var description : String = ""
 
     @ColumnInfo(name = TERMINATION)
     var deadline : String = ""
+
+    @ColumnInfo(name = TERMINATION_TIME)
+    var time : String = ""
 
     @ColumnInfo(name = PRIORITY)
     var priority : Int = 1
