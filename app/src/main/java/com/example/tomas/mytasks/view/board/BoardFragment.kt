@@ -33,7 +33,7 @@ class BoardFragment : Fragment(), BoardView {
 
         presenter = BoardPresenterImpl(this)
 
-        add_task_button.setOnClickListener {
+        add_task_fab.setOnClickListener {
             presenter!!.onAddTaskButtonClicked()
         }
     }
