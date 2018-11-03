@@ -57,15 +57,15 @@ class TaskMakerFragment : Fragment(), TaskMakerView {
     }
 
     override fun getTaskTitle(): String {
-        return task_title.text.toString()
+        return task_title.editText!!.text.toString()
     }
 
     override fun getTaskDescription(): String {
-        return task_description.text.toString()
+        return task_description.editText!!.text.toString()
     }
 
     override fun getTaskDeadline(): String {
-        return task_deadline.text.toString()
+        return task_deadline.editText!!.text.toString()
     }
 
     override fun getTaskPriority(): Int {
@@ -74,23 +74,23 @@ class TaskMakerFragment : Fragment(), TaskMakerView {
 
     override fun setTaskTitle(title: String?) {
         if (title == null)
-            task_title.setText(EMPTY_TEXT)
+            task_title.editText!!.setText(EMPTY_TEXT)
         else
-            task_title.setText(title)
+            task_title.editText!!.setText(title)
     }
 
     override fun setTaskDescription(description: String?) {
         if (description == null)
-            task_title.setText(EMPTY_TEXT)
+            task_title.editText!!.setText(EMPTY_TEXT)
         else
-            task_title.setText(description)
+            task_title.editText!!.setText(description)
     }
 
     override fun setTaskDeadline(deadline: String?) {
         if (deadline == null)
-            task_title.setText(EMPTY_TEXT)
+            task_title.editText!!.setText(EMPTY_TEXT)
         else
-            task_title.setText(deadline)
+            task_title.editText!!.setText(deadline)
     }
 
     override fun setTaskPriority(priority: Int?) {
