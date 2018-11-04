@@ -12,6 +12,9 @@ class TasksRepository (private val taskDao: TaskDao) {
     fun insertTask(task: Task) {
         taskDao.insert(task)
     }
+    fun updateTask(task: Task){
+        taskDao.update(task)
+    }
 
     fun deleteTask(task: Task) {
         taskDao.delete(task)

@@ -6,13 +6,17 @@ import com.example.tomas.mytasks.interactor.TasksRepository
 import com.example.tomas.mytasks.view.creator.TaskMakerView
 import javax.inject.Inject
 
-class TaskMakerPresenterImpl(private val view: TaskMakerView) : TaskMakerPresenter {
+open class TaskMakerPresenterImpl(private val view: TaskMakerView) : TaskMakerPresenter {
 
     @Inject lateinit var repository: TasksRepository
 
     private val createdTask = Task()
 
     init {
+        injectDependencies()
+    }
+
+    private fun injectDependencies(){
         (view.getContext().applicationContext as MyNotesApp).component.inject(this)
     }
 

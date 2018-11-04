@@ -62,4 +62,8 @@ dependencies {
     //card view
     def cardVersion = "27.1.1"
     implementation "com.android.support:cardview-v7:$cardVersion"
+
+    //expandable layout
+    def expandableVersion = "2.9.2"
+    implementation "net.cachapa.expandablelayout:expandablelayout:$expandableVersion"
 }

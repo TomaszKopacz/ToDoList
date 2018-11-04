@@ -13,8 +13,7 @@ import com.example.tomas.mytasks.view.board.BoardView
 import com.example.tomas.mytasks.view.creator.TaskMakerActivity
 import javax.inject.Inject
 
-class BoardPresenterImpl(private val view: BoardView)
-    : BoardPresenter,
+class BoardPresenterImpl(private val view: BoardView) : BoardPresenter,
     TaskAdapter.OnItemClickListener,
     SwipeToDeleteCallback(view.getContext()) {
 
@@ -52,6 +51,7 @@ class BoardPresenterImpl(private val view: BoardView)
     }
 
     override fun onItemClick(task: Task, itemView: View) {
+
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) {

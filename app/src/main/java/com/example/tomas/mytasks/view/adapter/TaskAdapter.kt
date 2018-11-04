@@ -46,6 +46,7 @@ class TaskAdapter(private val tasks: List<Task>,
             setLayout(this, task)
 
             setOnClickListener {
+                item_expandable.toggle()
                 listener?.onItemClick(task, it)
             }
         }
@@ -60,12 +61,12 @@ class TaskAdapter(private val tasks: List<Task>,
         private fun getBackgroundColor(task: Task) : Int {
             return when (task.priority) {
                 0 -> Color.parseColor("#ffffff")
-                1 -> Color.parseColor("#d4e157")
-                2 -> Color.parseColor("#ffee58")
-                3 -> Color.parseColor("#ffca28")
-                4 -> Color.parseColor("#ffa726")
-                5 -> Color.parseColor("#ff7043")
-                6 -> Color.parseColor("#ef5350")
+                1 -> Color.parseColor("#dce775")
+                2 -> Color.parseColor("#fff176")
+                3 -> Color.parseColor("#ffd54f")
+                4 -> Color.parseColor("#ffb74d")
+                5 -> Color.parseColor("#ff8a65")
+                6 -> Color.parseColor("#e57373")
                 else -> Color.parseColor("#ffffff")
             }
         }
