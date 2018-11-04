@@ -9,7 +9,8 @@
         android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@color/cardview_light_background"
         app:cardCornerRadius="@dimen/cardview_default_radius"
-        app:cardElevation="@dimen/cardview_default_elevation">
+        app:cardElevation="@dimen/cardview_default_elevation"
+        android:focusable="true">
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -18,7 +19,7 @@
             android:orientation="vertical">
 
         <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/item_title"
                 android:layout_margin="@dimen/default_margin"
@@ -26,7 +27,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 
         <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/item_deadline"
                 android:layout_margin="@dimen/default_margin"/>
@@ -38,7 +39,7 @@
                 app:el_expanded="false">
 
             <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/item_description"
                     android:layout_margin="@dimen/default_margin"/>

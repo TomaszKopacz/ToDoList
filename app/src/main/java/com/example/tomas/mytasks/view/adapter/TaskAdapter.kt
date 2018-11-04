@@ -1,9 +1,7 @@
 package com.example.tomas.mytasks.view.adapter
 
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +15,10 @@ class TaskAdapter(private val tasks: List<Task>,
 
     interface OnItemClickListener {
         fun onItemClick(task: Task, itemView: View)
+        fun onItemLongClick(task: Task, it: View?)
+        fun onTitleLongClick(task: Task, it: View?): Boolean
+        fun onDeadlineLongClick(task: Task, it: View?)
+        fun onDescriptionLongClick(task: Task, it: View?)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -45,10 +47,8 @@ class TaskAdapter(private val tasks: List<Task>,
 
             setLayout(this, task)
 
-            setOnClickListener {
-                item_expandable.toggle()
-                listener?.onItemClick(task, it)
-            }
+            if (listener != null)
+                setListener(this, listener, task)
         }
 
         private fun setLayout(view: View, task: Task){
@@ -69,6 +69,37 @@ class TaskAdapter(private val tasks: List<Task>,
                 6 -> Color.parseColor("#e57373")
                 else -> Color.parseColor("#ffffff")
             }
+        }
+
+        private fun setListener(view: View, listener: OnItemClickListener, task: Task){
+            view.setOnClickListener {
+                updateLayoutWhenItemClicked(it)
+                listener.onItemClick(task, it)
+            }
+
+            view.setOnLongClickListener {
+                listener.onItemLongClick(task, it)
+                true
+            }
+
+            view.item_title.setOnLongClickListener {
+                listener.onTitleLongClick(task, it)
+                true
+            }
+
+            view.item_deadline.setOnLongClickListener {
+                listener.onDeadlineLongClick(task, it)
+                true
+            }
+
+            view.item_description.setOnLongClickListener {
+                listener.onDescriptionLongClick(task, it)
+                true
+            }
+        }
+
+        private fun updateLayoutWhenItemClicked(view: View){
+            view.item_expandable.toggle()
         }
 
         fun getTask(): Task {
