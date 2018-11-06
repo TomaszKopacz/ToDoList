@@ -1,24 +1,14 @@
-package com.example.tomas.mytasks.presenter.creator
+package com.example.tomas.mytasks.creator
 
-import com.example.tomas.mytasks.app.MyNotesApp
-import com.example.tomas.mytasks.entity.Task
-import com.example.tomas.mytasks.interactor.TasksRepository
-import com.example.tomas.mytasks.view.creator.TaskMakerView
-import javax.inject.Inject
+import com.example.tomas.mytasks.db.entity.Task
+import com.example.tomas.mytasks.db.TasksRepository
 
-open class TaskMakerPresenterImpl(private val view: TaskMakerView) : TaskMakerPresenter {
-
-    @Inject lateinit var repository: TasksRepository
+class TaskMakerPresenterImpl(
+    private val view: TaskMakerView,
+    private val repository: TasksRepository
+) : TaskMakerPresenter {
 
     private val createdTask = Task()
-
-    init {
-        injectDependencies()
-    }
-
-    private fun injectDependencies(){
-        (view.getContext().applicationContext as MyNotesApp).component.inject(this)
-    }
 
     override fun onSubmitTaskButtonClicked() {
         createTask()

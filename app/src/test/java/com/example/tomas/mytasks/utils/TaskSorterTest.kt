@@ -1,6 +1,6 @@
 package com.example.tomas.mytasks.utils
 
-import com.example.tomas.mytasks.entity.Task
+import com.example.tomas.mytasks.db.entity.Task
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test

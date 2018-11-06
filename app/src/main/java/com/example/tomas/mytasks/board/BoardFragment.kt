@@ -1,4 +1,4 @@
-package com.example.tomas.mytasks.view.board
+package com.example.tomas.mytasks.board
 
 
 import android.content.Context
@@ -7,14 +7,9 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.*
 import com.example.tomas.mytasks.R
-import com.example.tomas.mytasks.presenter.board.BoardPresenter
-import com.example.tomas.mytasks.presenter.board.BoardPresenterImpl
-import com.example.tomas.mytasks.view.adapter.TaskAdapter
 import kotlinx.android.synthetic.main.fragment_board.*
 
 class BoardFragment : Fragment(), BoardView {
-
-    private var presenter: BoardPresenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,19 +23,15 @@ class BoardFragment : Fragment(), BoardView {
         return inflater.inflate(R.layout.fragment_board, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        presenter = BoardPresenterImpl(this)
-
-        add_task_fab.setOnClickListener {
-            presenter!!.onAddTaskButtonClicked()
-        }
-    }
-
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.menu_board, menu)
+    }
+
+    override fun setPresenter(presenter: BoardPresenter) {
+        add_task_fab.setOnClickListener {
+            presenter.onAddTaskButtonClicked()
+        }
     }
 
     override fun getContext(): Context {

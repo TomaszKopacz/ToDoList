@@ -1,7 +1,7 @@
 package com.example.tomas.mytasks.di
 
-import com.example.tomas.mytasks.presenter.board.BoardPresenterImpl
-import com.example.tomas.mytasks.presenter.creator.TaskMakerPresenterImpl
+import com.example.tomas.mytasks.board.BoardActivity
+import com.example.tomas.mytasks.creator.TaskMakerActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -9,6 +9,6 @@ import javax.inject.Singleton
 @Component(modules = [DatabaseModule::class])
 interface AppComponent {
 
-    fun inject(presenter: BoardPresenterImpl)
-    fun inject(presenter: TaskMakerPresenterImpl)
+    fun inject(activity: BoardActivity)
+    fun inject(activity: TaskMakerActivity)
 }

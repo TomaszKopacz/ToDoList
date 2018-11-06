@@ -1,4 +1,4 @@
-package com.example.tomas.mytasks.view.creator
+package com.example.tomas.mytasks.creator
 
 
 import android.app.DatePickerDialog
@@ -8,8 +8,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.*
 import com.example.tomas.mytasks.R
-import com.example.tomas.mytasks.presenter.creator.TaskMakerPresenter
-import com.example.tomas.mytasks.presenter.creator.TaskMakerPresenterImpl
 import kotlinx.android.synthetic.main.fragment_task_maker.*
 import java.util.*
 
@@ -31,24 +29,25 @@ class TaskMakerFragment : Fragment(), TaskMakerView {
         return inflater.inflate(R.layout.fragment_task_maker, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        presenter = TaskMakerPresenterImpl(this)
-        task_deadline.setOnClickListener(dateListener)
-        task_deadline_time.setOnClickListener(timeListener)
-    }
-
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.menu_task_maker, menu)
     }
 
+    override fun setPresenter(taskMakerPresenter: TaskMakerPresenter) {
+        presenter = taskMakerPresenter
+
+        task_deadline.setOnClickListener(dateListener)
+        task_deadline_time.setOnClickListener(timeListener)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.menu_submit -> {
-                presenter!!.onSubmitTaskButtonClicked()
-                return true
+                if (presenter != null) {
+                    presenter!!.onSubmitTaskButtonClicked()
+                    return true
+                }
             }
         }
         return super.onOptionsItemSelected(item)

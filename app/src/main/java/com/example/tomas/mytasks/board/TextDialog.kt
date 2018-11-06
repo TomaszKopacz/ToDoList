@@ -1,4 +1,4 @@
-package com.example.tomas.mytasks.view.dialog
+package com.example.tomas.mytasks.board
 
 import android.app.AlertDialog
 import android.content.Context
@@ -33,5 +33,9 @@ class TextDialog(private val context: Context) {
         }
 
         builder.show()
+    }
+
+    interface TextDialogListener {
+        fun textChanged(text: String)
     }
 }

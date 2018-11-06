@@ -1,4 +1,4 @@
-package com.example.tomas.mytasks.entity
+package com.example.tomas.mytasks.db.entity
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity

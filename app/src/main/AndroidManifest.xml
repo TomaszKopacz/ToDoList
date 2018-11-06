@@ -10,15 +10,15 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning"
             android:name=".app.MyNotesApp">
-        <activity android:name=".view.board.BoardActivity">
+        <activity android:name=".board.BoardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.creator.TaskMakerActivity"
-                  android:parentActivityName=".view.board.BoardActivity">
+        <activity android:name=".creator.TaskMakerActivity"
+                  android:parentActivityName=".board.BoardActivity">
         </activity>
     </application>
 

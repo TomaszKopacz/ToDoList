@@ -4,11 +4,11 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.creator.TaskMakerActivity">
+        tools:context=".creator.TaskMakerActivity">
 
     <fragment
-            android:id="@+id/board_fragment"
+            android:id="@+id/task_maker_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.example.tomas.mytasks.view.creator.TaskMakerFragment"/>
+            android:name="com.example.tomas.mytasks.creator.TaskMakerFragment"/>
 </android.support.constraint.ConstraintLayout>

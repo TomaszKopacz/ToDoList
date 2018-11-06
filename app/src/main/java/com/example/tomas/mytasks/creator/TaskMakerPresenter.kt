@@ -1,4 +1,4 @@
-package com.example.tomas.mytasks.presenter.creator
+package com.example.tomas.mytasks.creator
 
 interface TaskMakerPresenter {
     fun onSubmitTaskButtonClicked()

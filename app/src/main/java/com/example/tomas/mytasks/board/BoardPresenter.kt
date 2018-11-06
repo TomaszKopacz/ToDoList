@@ -1,4 +1,4 @@
-package com.example.tomas.mytasks.presenter.board
+package com.example.tomas.mytasks.board
 
 interface BoardPresenter {
     fun onAddTaskButtonClicked()

@@ -2,9 +2,9 @@ package com.example.tomas.mytasks.di
 
 import android.app.Application
 import android.arch.persistence.room.Room
-import com.example.tomas.mytasks.interactor.TaskDao
-import com.example.tomas.mytasks.interactor.TaskDatabase
-import com.example.tomas.mytasks.interactor.TasksRepository
+import com.example.tomas.mytasks.db.TaskDao
+import com.example.tomas.mytasks.db.TaskDatabase
+import com.example.tomas.mytasks.db.TasksRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

@@ -1,8 +1,8 @@
-package com.example.tomas.mytasks.interactor
+package com.example.tomas.mytasks.db
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
-import com.example.tomas.mytasks.entity.Task
+import com.example.tomas.mytasks.db.entity.Task
 
 @Dao
 interface TaskDao {

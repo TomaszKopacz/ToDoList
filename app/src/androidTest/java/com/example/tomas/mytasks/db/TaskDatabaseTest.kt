@@ -1,8 +1,8 @@
-package com.example.tomas.mytasks.interactor
+package com.example.tomas.mytasks.db
 
 import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry
-import com.example.tomas.mytasks.entity.Task
+import com.example.tomas.mytasks.db.entity.Task
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
