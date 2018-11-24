@@ -15,10 +15,11 @@ class TaskAdapter(private val tasks: List<Task>,
 
     interface OnItemClickListener {
         fun onItemClick(task: Task, itemView: View)
-        fun onItemLongClick(task: Task, it: View?)
-        fun onTitleLongClick(task: Task, it: View?): Boolean
-        fun onDeadlineLongClick(task: Task, it: View?)
-        fun onDescriptionLongClick(task: Task, it: View?)
+        fun onItemLongClick(task: Task, itemView: View?)
+        fun onItemSwiped(task: Task, itemView: View)
+        fun onTitleLongClick(task: Task, itemView: View?)
+        fun onDeadlineLongClick(task: Task, itemView: View?)
+        fun onDescriptionLongClick(task: Task, itemView: View?)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {

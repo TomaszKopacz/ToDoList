@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/task_title_dialog"
+            android:layout_margin="@dimen/large_margin">
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/title_hint"
+                android:importantForAutofill="no" tools:targetApi="o"
+                android:inputType="text"
+                android:lines="1"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/task_description_dialog"
+            android:layout_margin="@dimen/large_margin">
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/description_hint"
+                android:autofillHints="true"
+                android:inputType="text"
+                android:lines="1"
+                tools:targetApi="o"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/task_date_dialog"
+            android:layout_margin="@dimen/large_margin">
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/deadline_hint"
+                android:autofillHints="true"
+                android:inputType="text"
+                android:lines="1"
+                tools:targetApi="o"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/task_time_dialog"
+            android:layout_margin="@dimen/large_margin">
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/deadline_time_hint"
+                android:autofillHints="true"
+                android:inputType="text"
+                android:lines="1"
+                tools:targetApi="o"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+            android:text="@string/priority_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/priority_label"
+            android:layout_margin="@dimen/large_margin"/>
+
+    <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/priority_bar"
+            android:progress="0"
+            android:max="6"
+            android:layout_margin="@dimen/default_margin"/>
+
+</LinearLayout>

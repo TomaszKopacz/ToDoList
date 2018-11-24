@@ -1,7 +1,7 @@
 package com.example.tomas.mytasks.creator
 
-import com.example.tomas.mytasks.db.entity.Task
 import com.example.tomas.mytasks.db.TasksRepository
+import com.example.tomas.mytasks.db.entity.Task
 
 class TaskMakerPresenterImpl(
     private val view: TaskMakerView,

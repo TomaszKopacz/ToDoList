@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.tomas.mytasks.R
 import com.example.tomas.mytasks.app.MyNotesApp
-import com.example.tomas.mytasks.db.TasksRepository
+import com.example.tomas.mytasks.db.TasksRepositoryImpl
 import javax.inject.Inject
 
 
@@ -12,7 +12,7 @@ class BoardActivity : AppCompatActivity() {
 
     private var boardFragment: BoardFragment? = null
     private var boardPresenter: BoardPresenter? = null
-    @Inject lateinit var repository: TasksRepository
+    @Inject lateinit var repository: TasksRepositoryImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

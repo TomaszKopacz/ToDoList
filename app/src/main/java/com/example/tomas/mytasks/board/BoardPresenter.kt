@@ -1,5 +1,5 @@
 package com.example.tomas.mytasks.board
 
-interface BoardPresenter {
+interface BoardPresenter : TaskAdapter.OnItemClickListener {
     fun onAddTaskButtonClicked()
 }

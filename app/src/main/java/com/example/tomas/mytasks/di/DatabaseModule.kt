@@ -4,13 +4,13 @@ import android.app.Application
 import android.arch.persistence.room.Room
 import com.example.tomas.mytasks.db.TaskDao
 import com.example.tomas.mytasks.db.TaskDatabase
-import com.example.tomas.mytasks.db.TasksRepository
+import com.example.tomas.mytasks.db.TasksRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class DatabaseModule(private val app: Application) {
+class DatabaseModule(app: Application) {
 
     private val db: TaskDatabase = Room.databaseBuilder(app, TaskDatabase::class.java, TaskDatabase.DATABASE_NAME)
         .allowMainThreadQueries()
@@ -30,7 +30,7 @@ class DatabaseModule(private val app: Application) {
 
     @Singleton
     @Provides
-    fun providesTasksRepository(taskDao: TaskDao): TasksRepository {
-        return TasksRepository(taskDao)
+    fun providesTasksRepository(taskDao: TaskDao): TasksRepositoryImpl {
+        return TasksRepositoryImpl(taskDao)
     }
 }

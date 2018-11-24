@@ -5,15 +5,14 @@ import android.support.v7.app.AppCompatActivity
 import com.example.tomas.mytasks.R
 import com.example.tomas.mytasks.R.layout.activity_task_maker
 import com.example.tomas.mytasks.app.MyNotesApp
-import com.example.tomas.mytasks.db.TasksRepository
+import com.example.tomas.mytasks.db.TasksRepositoryImpl
 import javax.inject.Inject
 
 class TaskMakerActivity : AppCompatActivity() {
 
     private var fragment: TaskMakerFragment? = null
     private var presenter: TaskMakerPresenter? = null
-    @Inject
-    lateinit var repository: TasksRepository
+    @Inject lateinit var repository: TasksRepositoryImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

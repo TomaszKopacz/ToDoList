@@ -8,11 +8,11 @@ import android.arch.persistence.room.PrimaryKey
 class Task {
 
     companion object {
-        private const val TITLE = "title"
-        private const val DESCRIPTION = "description"
-        private const val TERMINATION = "must_to_do_date"
-        private const val TERMINATION_TIME = "must_to_do_time"
-        private const val PRIORITY = "priority"
+        const val TITLE = "title"
+        const val DESCRIPTION = "description"
+        const val TERMINATION = "must_to_do_date"
+        const val TERMINATION_TIME = "must_to_do_time"
+        const val PRIORITY = "priority"
     }
 
     @PrimaryKey(autoGenerate = true)

@@ -1,13 +1,12 @@
 package com.example.tomas.mytasks.board
 
+import android.arch.lifecycle.LiveData
 import android.content.Context
-import android.support.v7.widget.helper.ItemTouchHelper
+import com.example.tomas.mytasks.db.entity.Task
 
 interface BoardView {
 
     fun setPresenter(presenter: BoardPresenter)
     fun getContext(): Context
-    fun showTasks(adapter: TaskAdapter)
-    fun setOnItemTouchNotifier(callback: ItemTouchHelper.SimpleCallback)
-
+    fun showTasks(tasks: LiveData<List<Task>>, listener: TaskAdapter.OnItemClickListener)
 }
