@@ -17,9 +17,6 @@ class TaskAdapter(private val tasks: List<Task>,
         fun onItemClick(task: Task, itemView: View)
         fun onItemLongClick(task: Task, itemView: View?)
         fun onItemSwiped(task: Task, itemView: View)
-        fun onTitleLongClick(task: Task, itemView: View?)
-        fun onDeadlineLongClick(task: Task, itemView: View?)
-        fun onDescriptionLongClick(task: Task, itemView: View?)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -80,21 +77,6 @@ class TaskAdapter(private val tasks: List<Task>,
 
             view.setOnLongClickListener {
                 listener.onItemLongClick(task, it)
-                true
-            }
-
-            view.item_title.setOnLongClickListener {
-                listener.onTitleLongClick(task, it)
-                true
-            }
-
-            view.item_deadline.setOnLongClickListener {
-                listener.onDeadlineLongClick(task, it)
-                true
-            }
-
-            view.item_description.setOnLongClickListener {
-                listener.onDescriptionLongClick(task, it)
                 true
             }
         }

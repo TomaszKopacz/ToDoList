@@ -11,7 +11,8 @@ class BoardPresenterImpl(
     private val view: BoardView,
     private val repository: TasksRepository
 ) : BoardPresenter,
-    TaskAdapter.OnItemClickListener {
+    TaskAdapter.OnItemClickListener,
+    ModifierDialogPresenter {
 
     private var tasks: LiveData<List<Task>>? = null
 
@@ -43,28 +44,20 @@ class BoardPresenterImpl(
     }
 
     override fun onItemLongClick(task: Task, itemView: View?) {
-        showModifierDialog(Task.PRIORITY, task)
+        showModifierDialog(task)
     }
 
     override fun onItemSwiped(task: Task, itemView: View) {
         repository.deleteTask(task)
     }
 
-    override fun onTitleLongClick(task: Task, itemView: View?) {
-        showModifierDialog(Task.TITLE, task)
+    private fun showModifierDialog(task: Task) {
+        val dialog = ModifierDialog(view.getContext(), this)
+        dialog.show(task)
     }
 
-    override fun onDescriptionLongClick(task: Task, itemView: View?) {
-        showModifierDialog(Task.PRIORITY, task)
+    override fun onTaskModified(task: Task) {
+        repository.updateTask(task)
     }
 
-    override fun onDeadlineLongClick(task: Task, itemView: View?) {
-        showModifierDialog(Task.TERMINATION, task)
-    }
-
-    private fun showModifierDialog(field: String, task: Task) {
-        val dialog = ModifierDialog(view.getContext())
-        dialog.show()
-
-    }
 }
